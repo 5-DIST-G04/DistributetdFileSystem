@@ -1,0 +1,4 @@
+//rootProject.name = 'Distributed-Filesystem'
+
+include 'common', 'node', 'server'
+

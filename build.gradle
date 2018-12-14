@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+    //id 'org.jetbrains.intellij' version '0.3.12'
+}
+
+subprojects {
+    apply plugin: 'java'
+    group = 'com.distributed'
+    version = '1.0'
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        testCompile group: 'junit', name: 'junit', version: '4.12'
+    }
+}
+
+//sourceCompatibility = 1.8
+
+//intellij {
+//    version '2018.2.4'
+//}
+//patchPluginXml {
+//    changeNotes """
+//      Add change notes here.<br>
+//      <em>most HTML tags may be used</em>"""
+//}
+
+project(':server'){
+    dependencies {
+        implementation project(':common')
+    }
+}
+
+project(':node'){
+
+    dependencies {
+        implementation project(':common')
+    }
+}
+
+project(':common'){
+    dependencies {
+
+    }
+}
+
