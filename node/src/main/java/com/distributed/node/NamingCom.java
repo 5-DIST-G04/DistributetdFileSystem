@@ -49,4 +49,13 @@ public class NamingCom {
             System.out.println("The removed node didn't exist");
         }
     }
+
+    public Optional<Integer> getFileLocation(String fileName){
+        Response response = target.path("FileLocation/" + fileName).request(MediaType.APPLICATION_JSON).get();
+        if(response.getStatus() != 200){
+            System.out.println("the server did not return a node this means that something went wrong in discovery");
+        }
+
+        return Optional.ofNullable(response.readEntity(Integer.class));
+    }
 }

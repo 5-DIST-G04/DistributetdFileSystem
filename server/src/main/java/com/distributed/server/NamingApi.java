@@ -21,6 +21,17 @@ public class NamingApi {
         return Response.status(200).entity(nodeIp.get()).build();
     }
 
+    @GET
+    @Path("/FileLocation/{filename}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getFileLocation(@PathParam("filename") String fileName){
+        Optional<Integer> fileLocation = namingData.getFileLocation(fileName);
+        if (!fileLocation.isPresent()){
+            return Response.status(404).entity("There was no node found this could mean there is no node's in the network").build();
+        }
+        return Response.status(200).entity(fileLocation.get()).build();
+    }
+
 //    @GET
 //    @Path("/{hash}/neighbours")
 //    @Produces(MediaType.APPLICATION_JSON)
