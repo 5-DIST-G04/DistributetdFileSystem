@@ -29,6 +29,7 @@ public class NamingData {
             return -1;
         }
         nodeList.put(node.getHash(), node.getIpAddress());
+        System.out.printf("node with hash: %d and ip: %s recieved and added to list",node.getHash(), node.getIpAddress());
         return 0;
     }
 

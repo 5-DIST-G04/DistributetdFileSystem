@@ -12,13 +12,13 @@ public class DiscoveryApi {
     private DiscoveryData discoveryData = DiscoveryData.getInstance();
 
     @POST
-    @Path("ServerUri")
+    @Path("ServerIp")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response setServerUri(String serverUri){
-        if(serverUri == null | serverUri.equals("")){
+    public Response setServerIp(String serverIp){
+        if(serverIp == null | serverIp.equals("")){
             return Response.status(406).entity("this is not allowed").build();
         }
-        discoveryData.setServerUri(serverUri);
+        discoveryData.setServerIp(serverIp);
         return Response.status(204).build();
     }
 

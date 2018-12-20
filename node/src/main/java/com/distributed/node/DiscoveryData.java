@@ -4,7 +4,7 @@ import com.distributed.common.NameHasher;
 
 public class DiscoveryData {
     private static DiscoveryData ourInstance = new DiscoveryData();
-    private String serverUri;
+    private String serverIp;
     private boolean initialized = false;
     private Integer prevNode;
     private Integer nextNode;
@@ -25,13 +25,14 @@ public class DiscoveryData {
         this.prevNode = this.getThisNode();
     }
 
-    public synchronized String getServerUri() {
-        return serverUri;
+    public synchronized String getServerIp() {
+        return serverIp;
     }
 
-    public synchronized void setServerUri(String serverUri) {
-        this.serverUri = serverUri;
+    public synchronized void setServerIp(String serverIp) {
+        this.serverIp = serverIp;
         initialized = true;
+        System.out.printf("recieved ip of server: %s\n",serverIp);
     }
 
     public synchronized boolean isInitialized() {

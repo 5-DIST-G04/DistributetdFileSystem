@@ -15,10 +15,10 @@ public class DiscoveryNodeCom {
         target = c.target(uri).path("Discovery");
     }
 
-    public void setServerUri(String serverUri){
-        Response response = target.path("ServerUri").request(MediaType.APPLICATION_JSON).post(Entity.entity(serverUri,MediaType.APPLICATION_JSON));
+    public void setServerUri(String serverIp){
+        Response response = target.path("ServerIp").request(MediaType.APPLICATION_JSON).post(Entity.entity(serverIp,MediaType.APPLICATION_JSON));
         if (response.getStatus() != 204){
-            System.out.println("an error occured when trying to set the serverUri of: " + target.getUri());
+            System.out.println("an error occured when trying to set the serverIp of: " + target.getUri());
         }
     }
 

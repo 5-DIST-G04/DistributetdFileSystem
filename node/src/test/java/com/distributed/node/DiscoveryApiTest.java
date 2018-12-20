@@ -34,10 +34,10 @@ public class DiscoveryApiTest {
 
     @Test
     public void setServerUri() {
-        final String testUri = "http://testuri.com:8080";
+        final String testUri = "192.168.0.1";
         discoveryNodeCom.setServerUri(testUri);
         assertTrue(discoveryData.isInitialized());
-        assertEquals(testUri, discoveryData.getServerUri());
+        assertEquals(testUri, discoveryData.getServerIp());
     }
 
     @Test

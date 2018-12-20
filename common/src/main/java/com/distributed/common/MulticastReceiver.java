@@ -19,10 +19,11 @@ public abstract class MulticastReceiver extends Thread {
     public void run() {
         try {
             socket = new MulticastSocket(comConf.getMulticastPort());
+            socket.setInterface(InetAddress.getByName(comConf.getHostIpAddress()));
             InetAddress group = InetAddress.getByName(comConf.getMulticastIp());
             socket.joinGroup(group);
             while (true) {
-                System.out.println("debug");
+                //System.out.println("debug");
                 DatagramPacket packet = new DatagramPacket(buf, buf.length);
                 socket.receive(packet);
                 String received = new String(
