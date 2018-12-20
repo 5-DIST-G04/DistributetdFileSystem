@@ -1,5 +1,6 @@
 package com.distributed.server;
 
+import com.distributed.common.ComConf;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -9,19 +10,23 @@ import java.net.URI;
 public class NameServer {
     private NamingData namingData;
     private HttpServer httpServer;
-    public final String ServerUri;
+    private ServerMulticastReceiver serverMulticastReceiver;
+    private ComConf comConf;
 
-    public NameServer(String serverUri){
-        ServerUri = serverUri;
-        httpServer = StartHttpServer(ServerUri);
+    public NameServer(ComConf comConf){
+        this.comConf = comConf;
+        namingData = NamingData.getInstance();
     }
 
     public void Start(){
-
+        serverMulticastReceiver = new ServerMulticastReceiver(comConf);
+        serverMulticastReceiver.start();
+        httpServer = StartHttpServer(comConf.getHostUri());
     }
 
     public void Stop(){
-
+        httpServer.shutdownNow();
+        serverMulticastReceiver.stop();
     }
 
     public static HttpServer StartHttpServer(String uri){

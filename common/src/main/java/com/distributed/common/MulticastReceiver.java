@@ -6,22 +6,20 @@ import java.net.InetAddress;
 import java.net.MulticastSocket;
 
 public abstract class MulticastReceiver extends Thread {
-    protected MulticastSocket socket = null;
-    protected byte[] buf = new byte[256];
-    int port;
-    String ip;
+    private MulticastSocket socket = null;
+    private byte[] buf = new byte[256];
+    protected ComConf comConf;
 
 
-    public MulticastReceiver(String ip, int port){
-        this.port = port;
-        this.ip = ip;
+    public MulticastReceiver(ComConf comConf){
+        this.comConf = comConf;
 
     }
 
     public void run() {
         try {
-            socket = new MulticastSocket(port);
-            InetAddress group = InetAddress.getByName(ip);
+            socket = new MulticastSocket(comConf.getMulticastPort());
+            InetAddress group = InetAddress.getByName(comConf.getMulticastIp());
             socket.joinGroup(group);
             while (true) {
                 System.out.println("debug");
@@ -30,7 +28,7 @@ public abstract class MulticastReceiver extends Thread {
                 String received = new String(
                         packet.getData(), 0, packet.getLength());
                 System.out.println("received: " + received);
-                proccessIncomingData(received);
+                processIncomingData(received);
                 if ("end".equals(received)) {
                     break;
                 }
@@ -40,12 +38,12 @@ public abstract class MulticastReceiver extends Thread {
             socket.leaveGroup(group);
             socket.close();
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 
 
-    public abstract void proccessIncomingData(String data);
+    public abstract void processIncomingData(String data);
 
     }
 

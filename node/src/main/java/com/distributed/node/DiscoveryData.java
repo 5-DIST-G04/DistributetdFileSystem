@@ -1,11 +1,14 @@
 package com.distributed.node;
 
+import com.distributed.common.NameHasher;
+
 public class DiscoveryData {
     private static DiscoveryData ourInstance = new DiscoveryData();
     private String serverUri;
     private boolean initialized = false;
     private Integer prevNode;
     private Integer nextNode;
+    private String nodeName;
 
     public static synchronized DiscoveryData getInstance() {
         if (ourInstance == null)
@@ -14,7 +17,12 @@ public class DiscoveryData {
     }
 
     private DiscoveryData() {
+    }
 
+    public synchronized void Init(String nodeName){
+        this.nodeName = nodeName;
+        this.nextNode = this.getThisNode();
+        this.prevNode = this.getThisNode();
     }
 
     public synchronized String getServerUri() {
@@ -44,5 +52,9 @@ public class DiscoveryData {
 
     public synchronized void setNextNode(Integer nextNode) {
         this.nextNode = nextNode;
+    }
+
+    public synchronized Integer getThisNode(){
+        return NameHasher.Hash(this.nodeName);
     }
 }
