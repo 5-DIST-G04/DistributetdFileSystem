@@ -7,7 +7,13 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] Args) throws IOException {
-        NodeInstance nodeInstance = new NodeInstance(new ComConf(8080,Args[0],"224.0.0.251",3000));
+        String hostName;
+        if (Args[0] == null){
+            hostName = Args[0];
+        } else {
+            hostName = "localhost";
+        }
+        NodeInstance nodeInstance = new NodeInstance(new ComConf(8080,hostName,"224.0.0.251",3000));
         nodeInstance.Start();
         System.in.read();
         //nodeInstance.Stop();

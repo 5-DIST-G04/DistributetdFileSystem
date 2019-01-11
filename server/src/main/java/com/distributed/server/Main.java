@@ -8,7 +8,13 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] Args) throws IOException {
-        NameServer nameServer = new NameServer(new ComConf(8080,Args[0],"224.0.0.251", 3000));
+        String hostName;
+        if (Args[0] == null){
+            hostName = Args[0];
+        } else {
+            hostName = "localhost";
+        }
+        NameServer nameServer = new NameServer(new ComConf(8080,hostName,"224.0.0.251", 3000));
         nameServer.Start();
         System.out.println("server running press enter to stop");
         System.in.read();

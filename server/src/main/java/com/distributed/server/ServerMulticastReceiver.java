@@ -15,8 +15,8 @@ public class ServerMulticastReceiver extends MulticastReceiver {
     @Override
     public void processIncomingData(String data) {
         System.out.println("received data: " + data);
-        String name =  data.substring(1,data.length()-1);    //accolades wegdoen
-        String[] splits = name.split(",");                        //nu hebben we hash nieuuwe node en IP nieuwe node
+        String name =  data.substring(0,data.length());    //accolades wegdoen
+        String[] splits = name.split(",");                //nu hebben we hash nieuwe node en IP nieuwe node
         int newHashInt = Integer.parseInt(splits[0]);
         String newIP = splits[1];
         Node newNode = new Node(newHashInt, newIP);

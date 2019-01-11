@@ -3,7 +3,7 @@ package com.distributed.node;
 import com.distributed.common.NameHasher;
 
 public class DiscoveryData {
-    private static DiscoveryData ourInstance = new DiscoveryData();
+    private static DiscoveryData ourInstance;
     private String serverIp;
     private boolean initialized = false;
     private Integer prevNode;
