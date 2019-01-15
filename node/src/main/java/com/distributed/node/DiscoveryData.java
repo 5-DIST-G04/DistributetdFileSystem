@@ -45,6 +45,7 @@ public class DiscoveryData {
 
     public synchronized void setPrevNode(Integer prevNode) {
         this.prevNode = prevNode;
+        System.out.println("prev node is: " + prevNode);
     }
 
     public synchronized Integer getNextNode() {
@@ -53,6 +54,7 @@ public class DiscoveryData {
 
     public synchronized void setNextNode(Integer nextNode) {
         this.nextNode = nextNode;
+        System.out.println("next node is: " + nextNode);
     }
 
     public synchronized Integer getThisNode(){

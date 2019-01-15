@@ -8,6 +8,6 @@ application {
 }
 
 shadowJar {
-    baseName = 'shadow'
+    baseName = 'NameServer'
     version = '1.0'
 }

@@ -47,6 +47,7 @@ public class NodeInstance {
         MulticastPublisher publisher = new MulticastPublisher(comConf);
         try {
             publisher.multicast( discoveryData.getThisNode() + "," + ipAddress);
+            System.out.println("multicast send");
         } catch (IOException e) {
             System.out.println("The multicast failed");
             e.printStackTrace();

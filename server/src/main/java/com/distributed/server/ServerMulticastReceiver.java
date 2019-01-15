@@ -21,6 +21,7 @@ public class ServerMulticastReceiver extends MulticastReceiver {
         String newIP = splits[1];
         Node newNode = new Node(newHashInt, newIP);
         namingData.AddNode(newNode);
-        new DiscoveryNodeCom(comConf.getUri(newNode.getIpAddress()));
+        DiscoveryNodeCom nodeCom = new DiscoveryNodeCom(comConf.getUri(newNode.getIpAddress()));
+        nodeCom.setServerUri(comConf.getHostIpAddress());
     }
 }

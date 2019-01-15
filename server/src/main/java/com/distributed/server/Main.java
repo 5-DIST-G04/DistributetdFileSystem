@@ -9,7 +9,7 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] Args) throws IOException {
         String hostName;
-        if (Args[0] == null){
+        if (Args.length != 0){
             hostName = Args[0];
         } else {
             hostName = "localhost";

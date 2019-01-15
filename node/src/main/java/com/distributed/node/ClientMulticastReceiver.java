@@ -22,8 +22,8 @@ public class ClientMulticastReceiver extends MulticastReceiver {
     public void informNewNode(String message) {
 
 
-        String name =  message.substring(1,message.length()-1);    //accolades wegdoen
-        String[] splits = name.split(",");                        //nu hebben we hash nieuuwe node en IP nieuwe node
+        //String name =  message.substring(1,message.length()-1);    //accolades wegdoen
+        String[] splits = message.split(",");                        //nu hebben we hash nieuwe node en IP nieuwe node
         int newHashInt = Integer.parseInt(splits[0]);
         String newIP = splits[1];
         Node newNode = new Node(newHashInt, newIP);
