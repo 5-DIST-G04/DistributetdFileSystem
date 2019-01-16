@@ -1,5 +1,7 @@
 package com.distributed.server;
 
+import com.distributed.common.ComConf;
+import com.distributed.common.DiscoveryNodeCom;
 import com.distributed.common.NameHasher;
 import com.distributed.common.Node;
 
@@ -10,16 +12,21 @@ import java.util.*;
 public class NamingData {
     private static NamingData ourInstance;
     private Map<Integer,String> nodeList;
+    private ComConf comConf;
 
     private NamingData(){
         nodeList = new HashMap<>();
     }
 
-    public static NamingData getInstance() {
+    public static synchronized NamingData getInstance() {
         if (ourInstance == null){
             ourInstance = new NamingData();
         }
         return ourInstance;
+    }
+
+    public synchronized void init(ComConf comConf){
+        this.comConf = comConf;
     }
 
     public synchronized Optional<String> getNodeIp(Integer hash){
@@ -54,6 +61,17 @@ public class NamingData {
             }
         }
         return Optional.ofNullable((Integer)hashArray[index]);
+    }
+
+    public void nodeFail(Integer nodeHash){
+        Optional<Integer> next = getNextNeigbour(nodeHash);
+        Optional<Integer> prev = getPreviousNeighbour(nodeHash);
+        if (next.isPresent() && prev.isPresent()){
+            DiscoveryNodeCom nc = new DiscoveryNodeCom(comConf.getUri(getNodeIp(next.get()).get()));
+            nc.setPrevNode(prev.get());
+            nc = new DiscoveryNodeCom(comConf.getUri(getNodeIp(prev.get()).get()));
+            nc.setNextNode(next.get());
+        }
     }
 
     public synchronized Optional<Integer> getNextNeigbour(Integer nodeHash){
@@ -93,4 +111,5 @@ public class NamingData {
         }
         return Optional.of(prevNode);
     }
+
 }
