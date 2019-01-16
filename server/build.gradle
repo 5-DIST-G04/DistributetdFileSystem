@@ -1,0 +1,13 @@
+plugins {
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '4.0.3'
+}
+
+application {
+    mainClassName = 'com.distributed.server.Main'
+}
+
+shadowJar {
+    baseName = 'NameServer'
+    version = '1.0'
+}
