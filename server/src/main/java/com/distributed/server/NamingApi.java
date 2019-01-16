@@ -61,6 +61,7 @@ public class NamingApi {
         if(namingData.RemoveNode(hash).isEmpty()){
             return Response.status(409).entity("the node did not exist").build();
         }
+        System.out.println("node removed: " + hash);
         return Response.status(204).build();
     }
 }

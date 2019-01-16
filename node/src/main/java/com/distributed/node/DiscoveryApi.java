@@ -25,22 +25,22 @@ public class DiscoveryApi {
     @POST
     @Path("NextNode")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response setNextNode(Integer nodeHash){
+    public Response setNextNode(String nodeHash){
         if(nodeHash == null){
             return Response.status(406).entity("this is not allowed").build();
         }
-        discoveryData.setNextNode(nodeHash);
+        discoveryData.setNextNode(Integer.parseInt(nodeHash));
         return Response.status(204).build();
     }
 
     @POST
     @Path("PrevNode")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response setPrevNode(Integer nodeHash){
+    public Response setPrevNode(String nodeHash){
         if(nodeHash == null){
             return Response.status(406).entity("this is not allowed").build();
         }
-        discoveryData.setPrevNode(nodeHash);
+        discoveryData.setPrevNode(Integer.parseInt(nodeHash));
         return Response.status(204).build();
     }
 }

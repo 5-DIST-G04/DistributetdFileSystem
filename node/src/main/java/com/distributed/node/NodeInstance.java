@@ -36,7 +36,7 @@ public class NodeInstance {
     }
 
     public void Stop(){
-        //sendShutdown();  //TODO: uncomment this just commented for testing purposes
+        sendShutdown();  //TODO: uncomment this just commented for testing purposes
         httpServer.shutdown();
         clientMulticastReceiver.interrupt();
         try {

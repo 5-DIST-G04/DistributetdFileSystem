@@ -28,14 +28,54 @@ public class ClientMulticastReceiver extends MulticastReceiver {
         String newIP = splits[1];
         Node newNode = new Node(newHashInt, newIP);
 
-        if ((discoveryData.getThisNode() < newHashInt) && (newHashInt < discoveryData.getNextNode())) {
-            DiscoveryNodeCom discoveryNodeCom = new DiscoveryNodeCom(comConf.getUri(newNode.getIpAddress()));
-            discoveryNodeCom.setPrevNode(discoveryData.getThisNode());
-            discoveryNodeCom.setNextNode(discoveryData.getNextNode());
-
-        } else if ((discoveryData.getPrevNode() < newNode.getHash()) && (newNode.getHash() < discoveryData.getThisNode())) {
-            discoveryData.setPrevNode(newNode.getHash());
+        if (!discoveryData.isInitialized()){
+            return;
         }
+
+
+        if (discoveryData.getThisNode().equals(newHashInt)){
+            return;
+        }
+
+        if(discoveryData.getThisNode().equals(discoveryData.getNextNode()) && discoveryData.getThisNode().equals(discoveryData.getNextNode())){
+            setAsPrevAndNextNode(newNode);
+            return;
+        }
+
+        if(discoveryData.getThisNode() > discoveryData.getNextNode()){
+            if(newHashInt < discoveryData.getNextNode()){
+                setAsNextNode(newNode);
+                return;
+            }
+        }
+
+        if(discoveryData.getThisNode() > newHashInt && newHashInt > discoveryData.getPrevNode()){
+            setAsPrevNode(newNode);
+            return;
+        }
+
+
+        if ((discoveryData.getThisNode() < newHashInt) && (newHashInt < discoveryData.getNextNode())) {
+            setAsNextNode(newNode);
+            return;
+        }
+    }
+
+    private void setAsNextNode(Node node){
+        DiscoveryNodeCom dnc = new DiscoveryNodeCom(comConf.getUri(node.getIpAddress()));
+        dnc.setPrevNode(discoveryData.getThisNode());
+        dnc.setNextNode(discoveryData.getNextNode());
+        discoveryData.setNextNode(node.getHash());
+        return;
+    }
+
+    private void setAsPrevNode(Node node){
+        discoveryData.setPrevNode(node.getHash());
+    }
+
+    private void setAsPrevAndNextNode(Node node){
+        setAsNextNode(node);
+        setAsPrevNode(node);
     }
 
 }
