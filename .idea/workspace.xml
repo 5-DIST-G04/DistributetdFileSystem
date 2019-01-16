@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="038b6954-6933-477f-a677-d30c22f62046" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_glassfish_jersey_media_jersey_media_multipart_2_27.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jvnet_mimepull_mimepull_1_9_6.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/node/src/main/java/com/distributed/node/FileApi.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/node/src/main/java/com/distributed/node/FileChangeListener.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/node/src/main/java/com/distributed/node/ReplicationData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_annotations_2_8_10.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_core_2_8_10.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_databind_2_8_10.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_module_jackson_module_jaxb_annotations_2_8_10.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_glassfish_jersey_media_jersey_media_json_jackson_2_27.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/common/common_main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/common/common_main.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/common/common_test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/common/common_test.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/node/node_main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/node/node_main.iml" afterDir="false" />
@@ -18,7 +15,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/modules/server/server_test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/server/server_test.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/distributed/common/DiscoveryNodeCom.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/distributed/common/DiscoveryNodeCom.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node/src/main/java/com/distributed/node/ClientMulticastReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/node/src/main/java/com/distributed/node/ClientMulticastReceiver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node/src/main/java/com/distributed/node/DiscoveryApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/node/src/main/java/com/distributed/node/DiscoveryApi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node/src/main/java/com/distributed/node/NodeInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/node/src/main/java/com/distributed/node/NodeInstance.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/distributed/server/NamingApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/distributed/server/NamingApi.java" afterDir="false" />
     </list>
@@ -72,27 +71,27 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="gradle" value="18" />
-          <entry key="java" value="133" />
+          <entry key="java" value="134" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Groovy" value="18" />
-          <entry key="JAVA" value="133" />
+          <entry key="JAVA" value="134" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="2" />
           <entry key="gradle" value="684" />
-          <entry key="java" value="14836" />
+          <entry key="java" value="14886" />
           <entry key="txt" value="136" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="684" />
-          <entry key="JAVA" value="14836" />
+          <entry key="JAVA" value="14886" />
           <entry key="PLAIN_TEXT" value="138" />
         </counts>
       </usages-collector>
@@ -152,7 +151,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
@@ -164,8 +163,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/common/src/main/java/com/distributed/common/DiscoveryNodeCom.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="407">
-              <caret line="32" selection-start-line="32" selection-end-line="32" />
+            <state relative-caret-position="422">
+              <caret line="33" column="41" selection-start-line="33" selection-start-column="41" selection-end-line="33" selection-end-column="41" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/node/src/main/java/com/distributed/node/DiscoveryApi.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="30" column="9" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -181,15 +192,6 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node/src/main/java/com/distributed/node/DiscoveryData.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="56" column="56" selection-start-line="56" selection-start-column="56" selection-end-line="56" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -1238,8 +1240,6 @@
         <option value="$PROJECT_DIR$/common/src/main/java/com/distributed/common/MulticastListener.java" />
         <option value="$PROJECT_DIR$/common/src/main/java/com/distributed/common/MulticastPublisher.java" />
         <option value="$PROJECT_DIR$/common/src/main/java/com/distributed/common/ComConf.java" />
-        <option value="$PROJECT_DIR$/node/src/main/java/com/distributed/node/DiscoveryApi.java" />
-        <option value="$PROJECT_DIR$/common/src/main/java/com/distributed/common/DiscoveryNodeCom.java" />
         <option value="$PROJECT_DIR$/node/src/test/java/com/distributed/node/DiscoveryApiTest.java" />
         <option value="$PROJECT_DIR$/server/src/main/java/com/distributed/server/ServerMulticastReceiver.java" />
         <option value="$PROJECT_DIR$/node/src/main/java/com/distributed/node/DiscoveryData.java" />
@@ -1261,6 +1261,8 @@
         <option value="$PROJECT_DIR$/node/src/main/java/com/distributed/node/FileApi.java" />
         <option value="$PROJECT_DIR$/node/src/main/java/com/distributed/node/ClientMulticastReceiver.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/common/src/main/java/com/distributed/common/DiscoveryNodeCom.java" />
+        <option value="$PROJECT_DIR$/node/src/main/java/com/distributed/node/DiscoveryApi.java" />
       </list>
     </option>
   </component>
@@ -1481,7 +1483,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547672675776" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547673490437" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/build.gradle" />
@@ -1659,9 +1661,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TestNode - 2019.01.14 at 12h 40m 02s.xml">
-      <configuration name="TestNode" configurationId="GradleRunConfiguration" />
-    </history-entry>
     <history-entry file="TestServer - 2019.01.14 at 14h 51m 54s.xml">
       <configuration name="TestServer" configurationId="GradleRunConfiguration" />
     </history-entry>
@@ -1689,6 +1688,9 @@
     <history-entry file="TestNode - 2019.01.16 at 22h 02m 34s.xml">
       <configuration name="TestNode" configurationId="GradleRunConfiguration" />
     </history-entry>
+    <history-entry file="TestNode - 2019.01.16 at 22h 14m 55s.xml">
+      <configuration name="TestNode" configurationId="GradleRunConfiguration" />
+    </history-entry>
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1702,7 +1704,7 @@
   <component name="ToolWindowManager">
     <frame x="-1" y="-22" width="1922" height="1080" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18089648" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18089648" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -1712,14 +1714,14 @@
       <window_info id="Learn" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3294979" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3294979" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3294979" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39958158" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3294979" />
       <window_info anchor="bottom" id="Build" order="7" weight="0.32845187" />
       <window_info anchor="bottom" id="sbt-shell-toolwindow" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3294979" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.3294979" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Messages" order="12" />
@@ -1975,16 +1977,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node/src/main/java/com/distributed/node/DiscoveryApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/src/main/java/com/distributed/server/ServerMulticastReceiver.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -2067,16 +2059,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/com/distributed/common/DiscoveryNodeCom.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
@@ -2088,6 +2070,26 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/java/com/distributed/common/DiscoveryNodeCom.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="33" column="41" selection-start-line="33" selection-start-column="41" selection-end-line="33" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node/src/main/java/com/distributed/node/DiscoveryApi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="9" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
