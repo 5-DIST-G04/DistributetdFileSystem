@@ -8,11 +8,14 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] Args) throws IOException {
         String hostName;
+        /**
         if (Args.length != 0){
             hostName = Args[0];
         } else {
             hostName = "localhost";
         }
+         */
+        hostName = "192.168.0.3";
         NodeInstance nodeInstance = new NodeInstance(new ComConf(8080,hostName,"224.0.0.251",3000));
         nodeInstance.Start();
         System.in.read();
