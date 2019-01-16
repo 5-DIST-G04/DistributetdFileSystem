@@ -37,4 +37,5 @@ public class ClientMulticastReceiver extends MulticastReceiver {
             discoveryData.setPrevNode(newNode.getHash());
         }
     }
+
 }

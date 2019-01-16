@@ -1,6 +1,7 @@
 package com.distributed.node;
 
 import com.distributed.common.ComConf;
+import com.distributed.common.DiscoveryNodeCom;
 import com.distributed.common.MulticastPublisher;
 import com.distributed.common.MulticastReceiver;
 import org.glassfish.grizzly.http.server.HttpServer;
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.net.Inet4Address;
 import java.net.URI;
 import java.net.UnknownHostException;
+import java.util.Optional;
 
 public class NodeInstance {
     private DiscoveryData discoveryData;
@@ -34,13 +36,34 @@ public class NodeInstance {
     }
 
     public void Stop(){
-        httpServer.shutdownNow();
-        clientMulticastReceiver.stop();
+        //sendShutdown();  //TODO: uncomment this just commented for testing purposes
+        httpServer.shutdown();
+        clientMulticastReceiver.interrupt();
+        try {
+            clientMulticastReceiver.join();
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
     }
 
     public static HttpServer StartHttpServer(String uri){
         final ResourceConfig rc = new ResourceConfig().packages("com.distributed.node");
         return GrizzlyHttpServerFactory.createHttpServer(URI.create(uri), rc);
+    }
+
+    private void sendShutdown(){
+        NamingCom nc = new NamingCom(comConf.getUri(discoveryData.getServerIp()));
+        Optional<String> ip = nc.getIpAddress(discoveryData.getNextNode());
+        if (ip.isPresent()){
+            DiscoveryNodeCom dc = new DiscoveryNodeCom(comConf.getUri(ip.get()));
+            dc.setPrevNode(discoveryData.getPrevNode());
+        }
+        ip = nc.getIpAddress(discoveryData.getPrevNode());
+        if(ip.isPresent()){
+            DiscoveryNodeCom dc = new DiscoveryNodeCom(comConf.getUri(ip.get()));
+            dc.setNextNode(discoveryData.getNextNode());
+        }
+        nc.RemoveNode(discoveryData.getThisNode());
     }
 
     private void sendInitMulticast(String ipAddress){

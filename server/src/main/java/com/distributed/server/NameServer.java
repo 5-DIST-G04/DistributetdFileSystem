@@ -25,6 +25,12 @@ public class NameServer {
     }
 
     public void Stop(){
+        serverMulticastReceiver.interrupt();
+        try {
+            serverMulticastReceiver.join();
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
         httpServer.shutdownNow();
         serverMulticastReceiver.stop();
     }

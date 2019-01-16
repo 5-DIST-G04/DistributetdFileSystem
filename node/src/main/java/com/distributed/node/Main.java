@@ -15,8 +15,10 @@ public class Main {
         }
         NodeInstance nodeInstance = new NodeInstance(new ComConf(8080,hostName,"224.0.0.251",3000));
         nodeInstance.Start();
+        System.out.println("press any key to exit");
         System.in.read();
-        //nodeInstance.Stop();
+        System.out.println("key pressed");
+        nodeInstance.Stop();
 
     }
 }

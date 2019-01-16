@@ -18,6 +18,6 @@ public class Main {
         nameServer.Start();
         System.out.println("server running press enter to stop");
         System.in.read();
-        //nameServer.Stop();
+        nameServer.Stop();
     }
 }
