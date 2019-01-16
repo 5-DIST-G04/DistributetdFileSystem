@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import javax.swing.text.html.Option;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
@@ -65,5 +66,19 @@ public class NamingDataTest {
         assertTrue(location.isPresent());
         assertEquals((Integer)(fileHash - 1), location.get());
 
+    }
+
+    @Test
+    public void getNeighbours() {
+        for (int i = 0; i < 10; i++) {
+            namingData.AddNode(new Node(i,"192.168.0." + i));
+        }
+        namingData.RemoveNode(123);
+        Optional<Integer> nextNeigbour = namingData.getNextNeigbour(5);
+        assertTrue(nextNeigbour.isPresent());
+        assertEquals((Integer)6,nextNeigbour.get());
+        Optional<Integer> prevNeigbour = namingData.getPreviousNeighbour(5);
+        assertTrue(prevNeigbour.isPresent());
+        assertEquals((Integer)4,prevNeigbour.get());
     }
 }

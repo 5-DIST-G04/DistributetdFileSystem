@@ -17,7 +17,7 @@ public class Main {
         NameServer nameServer = new NameServer(new ComConf(8080,hostName,"224.0.0.251", 3000));
         nameServer.Start();
         System.out.println("server running press enter to stop");
-        System.in.read();
+        int input = System.in.read();
         nameServer.Stop();
     }
 }

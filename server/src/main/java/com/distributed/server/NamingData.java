@@ -3,6 +3,8 @@ package com.distributed.server;
 import com.distributed.common.NameHasher;
 import com.distributed.common.Node;
 
+import javax.swing.text.html.Option;
+import java.net.InetAddress;
 import java.util.*;
 
 public class NamingData {
@@ -52,5 +54,43 @@ public class NamingData {
             }
         }
         return Optional.ofNullable((Integer)hashArray[index]);
+    }
+
+    public synchronized Optional<Integer> getNextNeigbour(Integer nodeHash){
+        if(this.nodeList.isEmpty()){
+            return Optional.empty();
+        }
+        Collection<Integer> nodes= this.nodeList.keySet();
+        TreeSet<Integer> e = new TreeSet<>(nodes);
+        if(nodeHash.equals(e.last())){
+            return Optional.ofNullable(e.first());
+        }
+        Integer nextNode = e.last();
+        for (Integer node:
+             e) {
+            if(node > nodeHash && node < nextNode){
+                nextNode = node;
+            }
+        }
+        return Optional.of(nextNode);
+    }
+
+    public synchronized Optional<Integer> getPreviousNeighbour(Integer nodeHash){
+        if(this.nodeList.isEmpty()){
+            return Optional.empty();
+        }
+        Collection<Integer> nodes= this.nodeList.keySet();
+        TreeSet<Integer> e = new TreeSet<>(nodes);
+        if(nodeHash.equals(e.first())){
+            return Optional.ofNullable(e.last());
+        }
+        Integer prevNode = e.first();
+        for (Integer node:
+                e) {
+            if(node < nodeHash && node > prevNode){
+                prevNode = node;
+            }
+        }
+        return Optional.of(prevNode);
     }
 }
