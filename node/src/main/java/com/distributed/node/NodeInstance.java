@@ -16,6 +16,7 @@ import java.util.Optional;
 
 public class NodeInstance {
     private DiscoveryData discoveryData;
+    private ReplicationData replicationData;
     private MulticastReceiver clientMulticastReceiver;
     private HttpServer httpServer;
     private final ComConf comConf;
@@ -33,10 +34,11 @@ public class NodeInstance {
         httpServer = StartHttpServer(comConf.getHostUri());
         sendInitMulticast(comConf.getHostIpAddress());
 
+        replicationData.Init(comConf);
     }
 
     public void Stop(){
-        //sendShutdown();  //TODO: uncomment this just commented for testing purposes
+        sendShutdown();  //TODO: uncomment this just commented for testing purposes
         httpServer.shutdown();
         clientMulticastReceiver.interrupt();
         try {
@@ -44,6 +46,7 @@ public class NodeInstance {
         } catch (InterruptedException e){
             e.printStackTrace();
         }
+        replicationData.shutDown();
     }
 
     public static HttpServer StartHttpServer(String uri){
