@@ -28,7 +28,7 @@ public class NodeInstance {
 
     public void Start(){
 
-        discoveryData.Init(comConf.getHostIpAddress()); //TODO: this name should be generated in some way
+        discoveryData.Init(comConf); //TODO: this name should be generated in some way
         clientMulticastReceiver.start();
         httpServer = StartHttpServer(comConf.getHostUri());
         sendInitMulticast(comConf.getHostIpAddress());

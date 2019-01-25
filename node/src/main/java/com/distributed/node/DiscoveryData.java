@@ -1,6 +1,10 @@
 package com.distributed.node;
 
+import com.distributed.common.ComConf;
 import com.distributed.common.NameHasher;
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
 
 public class DiscoveryData {
     private static DiscoveryData ourInstance;
@@ -9,6 +13,7 @@ public class DiscoveryData {
     private Integer prevNode;
     private Integer nextNode;
     private String nodeName;
+    private ComConf comConf;
 
     public static synchronized DiscoveryData getInstance() {
         if (ourInstance == null)
@@ -16,13 +21,13 @@ public class DiscoveryData {
         return ourInstance;
     }
 
-    private DiscoveryData() {
-    }
 
-    public synchronized void Init(String nodeName){
-        this.nodeName = nodeName;
+
+    public synchronized void Init(ComConf comConf){
+        this.nodeName = comConf.getHostIpAddress();
         this.nextNode = this.getThisNode();
         this.prevNode = this.getThisNode();
+        this.comConf = comConf;
     }
 
     public synchronized String getServerIp() {
@@ -59,5 +64,9 @@ public class DiscoveryData {
 
     public synchronized Integer getThisNode(){
         return NameHasher.Hash(this.nodeName);
+    }
+
+    public synchronized String getNodeURI(){
+        return comConf.getUri(getServerIp());
     }
 }
