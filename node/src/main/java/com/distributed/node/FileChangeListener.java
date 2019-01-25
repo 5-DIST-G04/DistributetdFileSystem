@@ -7,15 +7,18 @@ public class FileChangeListener extends Thread {
     WatchService watchSrvc;
     Path path;
 
-    public FileChangeListener(){
+    private DiscoveryData discoveryData = DiscoveryData.getInstance();
+    private fileListener fileListener;
 
+    public FileChangeListener(fileListener fileChannel){
+        this.fileListener = fileChannel;
     }
 
     @Override
     public void run() {
         try {
             watchSrvc = FileSystems.getDefault().newWatchService();
-            path = Paths.get("src/main/java/com/distributed/data");
+            path = Paths.get("files");
             WatchKey watchKey = path.register(
                     watchSrvc, StandardWatchEventKinds.ENTRY_CREATE,
                     StandardWatchEventKinds.ENTRY_DELETE,
@@ -40,7 +43,7 @@ public class FileChangeListener extends Thread {
         switch (kind){
             case "ENTRY_CREATE":{
                 //do something when file is added
-
+                fileListener.update(context);
             }break;
             case "ENTRY_DELETE":{
                 //do something when file is deleted

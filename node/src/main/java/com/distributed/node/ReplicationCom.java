@@ -10,6 +10,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 public class ReplicationCom {
+
+    WebTarget target;
+
     private ReplicationCom() {}
     public ReplicationCom(String uri){
         Client c = ClientBuilder.newClient();

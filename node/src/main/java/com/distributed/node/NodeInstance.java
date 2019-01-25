@@ -16,12 +16,14 @@ import java.util.Optional;
 
 public class NodeInstance {
     private DiscoveryData discoveryData;
+    private ReplicationData replicationData;
     private MulticastReceiver clientMulticastReceiver;
     private HttpServer httpServer;
     private final ComConf comConf;
 
     public NodeInstance(ComConf comConf){
         this.comConf = comConf;
+        replicationData = ReplicationData.getInstance();
         clientMulticastReceiver = new ClientMulticastReceiver(comConf);
         discoveryData = DiscoveryData.getInstance();
     }
@@ -33,10 +35,13 @@ public class NodeInstance {
         httpServer = StartHttpServer(comConf.getHostUri());
         sendInitMulticast(comConf.getHostIpAddress());
 
+        replicationData.Init(comConf);
     }
 
     public void Stop(){
-        sendShutdown();  //TODO: uncomment this just commented for testing purposes
+        if(discoveryData.isInitialized()){
+            sendShutdown();
+        }
         httpServer.shutdown();
         clientMulticastReceiver.interrupt();
         try {
@@ -44,6 +49,7 @@ public class NodeInstance {
         } catch (InterruptedException e){
             e.printStackTrace();
         }
+        replicationData.shutDown();
     }
 
     public static HttpServer StartHttpServer(String uri){
