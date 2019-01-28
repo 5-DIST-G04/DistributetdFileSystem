@@ -31,11 +31,18 @@ public class NodeInstance {
     public void Start(){
 
         discoveryData.Init(comConf.getHostIpAddress()); //TODO: this name should be generated in some way
+
         clientMulticastReceiver.start();
         httpServer = StartHttpServer(comConf.getHostUri());
         sendInitMulticast(comConf.getHostIpAddress());
-
+        while (!discoveryData.isInitialized()){
+            //wait for server conformation
+        }
         replicationData.Init(comConf);
+
+
+
+
     }
 
     public void Stop(){

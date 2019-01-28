@@ -41,7 +41,7 @@ public class ReplicationData implements fileListener{
     }
 
     private synchronized void getLocalFiles() {
-        File aDirectory = new File("data");
+        File aDirectory = new File("files");
         String[] filesInDir = aDirectory.list();
         if(filesInDir != null){
             for (int i = 0; i < filesInDir.length; i++) {
@@ -87,7 +87,7 @@ public class ReplicationData implements fileListener{
 
         if (!fileData.isShutdown()) {
             replicated.put(fileData.getHash(),fileData);
-            fileData.getFileLog().put(discoveryData.getThisNode(), 1);   // 1=replicated
+            fileData.getFileLog().put(discoveryData.getThisNode().toString(), "1");   // 1=replicated
             if (fileData.isFileOwner()) {
                 owned.put(fileData.getHash(), fileData);
             }
@@ -148,17 +148,17 @@ public class ReplicationData implements fileListener{
             if (entry.getValue().isFileOwner()) {                              //als de node die shutdowned owner is zetten we isfileowner al op true voor replication naar previous
                 entry.getValue().setFileOwner(true);                            // idem maar geen owner
             }else entry.getValue().setFileOwner(false);
-            entry.getValue().getFileLog().remove(discoveryData.getThisNode());
+            entry.getValue().getFileLog().remove(discoveryData.getThisNode().toString());
             replicate(discoveryData.getPrevNode(),entry.getValue());
         }
 
         for (Map.Entry<Integer, FileData> entry : local.entrySet()) {
             entry.getValue().setDownloaded(false);
-            for (Map.Entry<Integer,Integer> entry2 : entry.getValue().getFileLog().entrySet()) {
-                if (entry2.getValue()==2) entry.getValue().setDownloaded(true);
+            for (Map.Entry<String,String> entry2 : entry.getValue().getFileLog().entrySet()) {
+                if (entry2.getValue().equals("2")) entry.getValue().setDownloaded(true);
             }
             //if entry.getValue().isDownloaded() // eigenlijk zouden we dan de owner van de file moeten inlichten dat die de file mag verwijderen.
-            entry.getValue().getFileLog().remove(discoveryData.getThisNode());
+            entry.getValue().getFileLog().remove(discoveryData.getThisNode().toString());
         }
     }
 

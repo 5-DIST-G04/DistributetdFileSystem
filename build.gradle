@@ -20,6 +20,8 @@ subprojects {
         compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-grizzly2-http', version: '2.27'
         // https://mvnrepository.com/artifact/org.glassfish.jersey.media/jersey-media-json-jackson
         compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.27'
+        // https://mvnrepository.com/artifact/io.bootique.jersey/bootique-jersey-jackson
+        compile group: 'io.bootique.jersey', name: 'bootique-jersey-jackson', version: '1.0.RC1' //Special one to make jackson work better
         // https://mvnrepository.com/artifact/org.glassfish.jersey.media/jersey-media-multipart
         compile group: 'org.glassfish.jersey.media', name: 'jersey-media-multipart', version: '2.27'
         // https://mvnrepository.com/artifact/org.glassfish.jersey.inject/jersey-hk2

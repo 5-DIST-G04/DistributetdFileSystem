@@ -1,5 +1,6 @@
 package com.distributed.node;
 
+import com.distributed.common.DiscoveryNodeCom;
 import com.distributed.common.Node;
 import org.glassfish.jersey.internal.Errors;
 
@@ -10,6 +11,8 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.Optional;
+
+import static java.lang.Integer.parseInt;
 
 public class NamingCom {
     private WebTarget target;
@@ -55,7 +58,11 @@ public class NamingCom {
         if(response.getStatus() != 200){
             System.out.println("the server did not return a node this means that something went wrong in discovery");
         }
-
-        return Optional.ofNullable(response.readEntity(Integer.class));
+        String nodeHashString = response.readEntity(String.class);
+        Integer nodeHash = null;
+        if(nodeHashString != null){
+            nodeHash = Integer.parseInt(nodeHashString);
+        }
+        return Optional.ofNullable(nodeHash);
     }
 }

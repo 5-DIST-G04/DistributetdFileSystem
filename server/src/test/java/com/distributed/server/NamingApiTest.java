@@ -74,6 +74,5 @@ public class NamingApiTest {
         location = namingCom.getFileLocation(fileName);
         assertTrue(location.isPresent());
         assertEquals((Integer)(fileHash - 1), location.get());
-
     }
 }

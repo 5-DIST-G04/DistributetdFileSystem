@@ -29,7 +29,7 @@ public class NamingApi {
         if (!fileLocation.isPresent()){
             return Response.status(404).entity("There was no node found this could mean there is no node's in the network").build();
         }
-        return Response.status(200).entity(fileLocation.get()).build();
+        return Response.status(200).entity(fileLocation.get().toString()).build();
     }
 
 //    @GET
