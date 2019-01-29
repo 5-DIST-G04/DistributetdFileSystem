@@ -11,6 +11,8 @@ import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.File;
+import java.io.IOException;
+import java.net.ServerSocket;
 
 public class ReplicationCom {
 
@@ -24,6 +26,17 @@ public class ReplicationCom {
         System.out.println("The file: " + fileData.getName() + " is being replicated to: " + target.getUri());
         //GenericEntity<FileData> genericEntity = new GenericEntity<FileData>(fileData){};
         //Node testnode = new Node();
-        Response response = target.request().post(Entity.entity(fileData, MediaType.APPLICATION_JSON));
+        //ServerSocket listener;
+
+        try {
+            //listener = new ServerSocket(9898);
+            Response response = target.request().post(Entity.entity(fileData.getName(), MediaType.APPLICATION_JSON));
+            //new FileSender(listener.accept(), fileData.getName()).start();
+
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
     }
 }

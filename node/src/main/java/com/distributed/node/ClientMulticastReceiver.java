@@ -27,6 +27,7 @@ public class ClientMulticastReceiver extends MulticastReceiver {
         int newHashInt = Integer.parseInt(splits[0]);
         String newIP = splits[1];
         Node newNode = new Node(newHashInt, newIP);
+        ReplicationData.getInstance().updateFiles(newHashInt);
 
         if (!discoveryData.isInitialized()){
             return;
@@ -37,13 +38,17 @@ public class ClientMulticastReceiver extends MulticastReceiver {
             return;
         }
 
-        if(discoveryData.getThisNode().equals(discoveryData.getNextNode()) && discoveryData.getThisNode().equals(discoveryData.getNextNode())){
+        if(discoveryData.getThisNode().equals(discoveryData.getNextNode()) && discoveryData.getThisNode().equals(discoveryData.getPrevNode())){
             setAsPrevAndNextNode(newNode);
             return;
         }
 
         if(discoveryData.getThisNode() > discoveryData.getNextNode()){
             if(newHashInt < discoveryData.getNextNode()){
+                setAsNextNode(newNode);
+                return;
+            }
+            if(newHashInt > discoveryData.getThisNode()){
                 setAsNextNode(newNode);
                 return;
             }
@@ -62,6 +67,7 @@ public class ClientMulticastReceiver extends MulticastReceiver {
     }
 
     private void setAsNextNode(Node node){
+        System.out.println("nodehash: " + node.getHash());
         DiscoveryNodeCom dnc = new DiscoveryNodeCom(comConf.getUri(node.getIpAddress()));
         dnc.setPrevNode(discoveryData.getThisNode());
         dnc.setNextNode(discoveryData.getNextNode());

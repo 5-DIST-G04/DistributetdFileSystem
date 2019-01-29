@@ -29,7 +29,7 @@ public class ReplicationApi {
         System.out.println("Recieved new file for replication: " + fileName);
         FileData fileData = new FileData(fileName);
         fileData.setFileOwner(true);
-        replicationData.receiveNewFile(fileData.getEntity());
+        replicationData.receiveNewFile(fileData);
         return Response.status(204).build();
     }
 }

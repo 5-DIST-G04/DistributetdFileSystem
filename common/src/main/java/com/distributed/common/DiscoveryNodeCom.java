@@ -26,6 +26,7 @@ public class DiscoveryNodeCom {
         Response response = target.path("NextNode").request(MediaType.APPLICATION_JSON).post(Entity.entity(nodeHash.toString(), MediaType.APPLICATION_JSON));
         if (response.getStatus() != 204){
             System.out.println("an error ocured when setting the nextnode parameter of: " + target.getUri());
+            System.out.println(response.getStatusInfo());
         }
     }
 
@@ -33,6 +34,7 @@ public class DiscoveryNodeCom {
         Response response = target.path("PrevNode").request(MediaType.APPLICATION_JSON).post(Entity.entity(nodeHash.toString(), MediaType.APPLICATION_JSON));
         if (response.getStatus() != 204){
             System.out.println("an error ocured when setting the prevnode parameter of: " + target.getUri());
+            System.out.println(response.getStatusInfo());
         }
     }
 }

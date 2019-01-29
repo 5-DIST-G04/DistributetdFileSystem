@@ -18,7 +18,7 @@ public class FileChangeListener extends Thread {
     public void run() {
         try {
             watchSrvc = FileSystems.getDefault().newWatchService();
-            path = Paths.get("files");
+            path = Paths.get("/home/pi/files");
             WatchKey watchKey = path.register(
                     watchSrvc, StandardWatchEventKinds.ENTRY_CREATE,
                     StandardWatchEventKinds.ENTRY_DELETE,

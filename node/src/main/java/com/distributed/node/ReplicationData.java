@@ -18,6 +18,7 @@ public class ReplicationData implements fileListener{
     private Map<Integer, FileData> replicated;
     private Map<Integer, FileData> owned;
     private ComConf comConf;
+    private FileChangeListener fileChangeListener;
 
     public static ReplicationData getInstance() {
         if (ourInstance == null) {
@@ -38,6 +39,7 @@ public class ReplicationData implements fileListener{
         owned = new HashMap<>();
         this.comConf = comConf;
         getLocalFiles();
+        fileChangeListener = new FileChangeListener(this);
     }
 
     private synchronized void getLocalFiles() {
@@ -125,6 +127,8 @@ public class ReplicationData implements fileListener{
 
     //if new node is added, this node has to check if nodeowner has changed for the files
     public void updateFiles(int newNodeHash) {
+        if(!discoveryData.isInitialized())
+            return;
         // hier gaan we alle elementen van de map owned af, maw alle files waar de node owner van is.
         for (Map.Entry<Integer, FileData > entry : owned.entrySet()) {              //elke entry bestaat uit een file (=key) en de hashmap(=value) waarin dan weer enerzijds de nodes (=keys) te vinden zijn die deze file bezitten en een intger value (=value) die aangeeft of het om replicated, local of downloaded gaat.
             if ((newNodeHash<entry.getKey()) && (newNodeHash>discoveryData.getThisNode())) {
@@ -143,6 +147,8 @@ public class ReplicationData implements fileListener{
     }
 
    public void shutDown() {
+        if(!discoveryData.isInitialized())
+            return;
 
         for (Map.Entry<Integer, FileData > entry : replicated.entrySet()) {   //we gaan eerst alle replicated files afgaan
             if (entry.getValue().isFileOwner()) {                              //als de node die shutdowned owner is zetten we isfileowner al op true voor replication naar previous
